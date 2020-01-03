@@ -1,6 +1,6 @@
 <?php
 
-namespace Optimistdigital\NovaDrafts;
+namespace OptimistDigital\NovaDrafts;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;

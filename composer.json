@@ -11,13 +11,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Optimistdigital\\NovaDrafts\\": "src/"
+            "OptimistDigital\\NovaDrafts\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Optimistdigital\\NovaDrafts\\FieldServiceProvider"
+                "OptimistDigital\\NovaDrafts\\FieldServiceProvider"
             ]
         }
     },
