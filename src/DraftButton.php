@@ -1,15 +1,15 @@
 <?php
 
-namespace Optimistdigital\NovaDrafts;
+namespace OptimistDigital\NovaDrafts;
 
 use Laravel\Nova\Fields\Field;
 
-class NovaDrafts extends Field
+class DraftButton extends Field
 {
     /**
      * The field's component.
      *
      * @var string
      */
-    public $component = 'nova-drafts';
+    public $component = 'nova-draft-button';
 }
