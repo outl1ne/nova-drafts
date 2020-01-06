@@ -67,4 +67,9 @@ class Draft extends Model
     {
         return isset($this->preview_token) ? true : false;
     }
+
+    public function draftsEnabled()
+    {
+        return true;
+    }
 }
