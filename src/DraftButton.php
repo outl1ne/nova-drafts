@@ -13,7 +13,7 @@ class DraftButton extends Field
      */
     public $component = 'nova-draft-button';
 
-    /** @var String $model Model Class. */
+    /** @var String Model Class. */
     protected $model;
 
     /**
