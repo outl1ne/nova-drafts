@@ -31,4 +31,14 @@ class DraftButton extends Field
 
         $this->hideFromIndex();
     }
+
+    public function resolve($resource, $attribute = null)
+    {
+        parent::resolve($resource, $attribute);
+
+        $this->withMeta([
+            'childDraft' => $resource->childDraft,
+            'isDraft' => (isset($resource->draft_parent_id) || (!isset($resource->draft_parent_id) && !$resource->published && isset($resource->id))),
+        ]);
+    }
 }
