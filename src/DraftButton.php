@@ -3,6 +3,8 @@
 namespace OptimistDigital\NovaDrafts;
 
 use Laravel\Nova\Fields\Field;
+use Laravel\Nova\Http\Requests\NovaRequest;
+use OptimistDigital\NovaDrafts\Models\Draft;
 
 class DraftButton extends Field
 {
@@ -39,14 +41,37 @@ class DraftButton extends Field
     {
         parent::resolve($resource, $attribute);
 
+        $draft_model = new Draft();
         $this->withMeta([
-            'childDraft' => $resource->childDraft($this->model),
+            'childDraft' => $draft_model->childDraft(get_class($resource)),
             'isDraft' => (isset($resource->draft_parent_id) || (!isset($resource->draft_parent_id) && !$resource->published && isset($resource->id))),
         ]);
     }
 
-    public function setModel($model)
+    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
     {
-        $this->model = $model;
+       $draft_model = new Draft();
+        if (isset($request->draft) && $draft_model->draftsEnabled()) {
+            Draft::createDraft($model);
+            //$model->fill(collect($model->getOriginal())->except()->toArray());
+            //$this->revertToOriginal($model);
+            dd($model);
+            return true;
+        }
+    }
+
+    protected function revertToOriginal($model)
+    {
+        $fillableProperties = $model->fillable;
+
+        $originalFillables = array_filter(
+            $model->getOriginal()->except('id'),
+            function ($key) use ($fillableProperties ) {
+                return in_array($key, $fillableProperties);
+            },
+            ARRAY_FILTER_USE_KEY
+        );
+
+        $model->fill($originalFillables);
     }
 }
