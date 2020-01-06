@@ -22,16 +22,10 @@ class Draft extends Model
     {
         parent::boot();
 
-        static::saving(function ($post) {
-            if ($post->is_pinned) {
-                Post::where('is_pinned', true)->each(function ($pinnedPost) {
-                    $pinnedPost->is_pinned = false;
-                    $pinnedPost->save();
-                });
-            }
-            if (isset($post->draft) && NovaBlog::draftsEnabled()) {
-                unset($post['draft']);
-                return Draft::createDraft($post);
+        static::saving(function ($data) {
+            if (isset($data->draft) && Draft::draftsEnabled()) {
+                unset($data['draft']);
+                return Draft::createDraft($data);
             }
             return true;
         });
