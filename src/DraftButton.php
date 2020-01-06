@@ -13,6 +13,9 @@ class DraftButton extends Field
      */
     public $component = 'nova-draft-button';
 
+    /** @var String $model Model Class. */
+    protected $model;
+
     /**
      * Create a new field.
      *
@@ -40,5 +43,10 @@ class DraftButton extends Field
             'childDraft' => $resource->childDraft,
             'isDraft' => (isset($resource->draft_parent_id) || (!isset($resource->draft_parent_id) && !$resource->published && isset($resource->id))),
         ]);
+    }
+
+    public function model($model)
+    {
+        $this->model = $model;
     }
 }
