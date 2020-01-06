@@ -40,12 +40,12 @@ class DraftButton extends Field
         parent::resolve($resource, $attribute);
 
         $this->withMeta([
-            'childDraft' => $resource->childDraft,
+            'childDraft' => $resource->childDraft($this->model),
             'isDraft' => (isset($resource->draft_parent_id) || (!isset($resource->draft_parent_id) && !$resource->published && isset($resource->id))),
         ]);
     }
 
-    public function model($model)
+    public function setModel($model)
     {
         $this->model = $model;
     }
