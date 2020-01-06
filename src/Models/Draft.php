@@ -15,23 +15,10 @@ class Draft extends Model
     public function __construct(array $attributes = [])
     {
         parent::__construct($attributes);
-        //$this->setTable(config('nova-blog.blog_posts_table', 'nova_blog_posts'));
+        $this->setTable(config('nova-blog.blog_posts_table', 'nova_blog_posts'));
     }
 
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::saving(function ($data) {
-            if (isset($data->draft) && Draft::draftsEnabled()) {
-                unset($data['draft']);
-                return Draft::createDraft($data);
-            }
-            return true;
-        });
-    }
-
-    private static function createDraft($data)
+    public static function createDraft($data)
     {
         if (isset($data->id)) {
             $newResource = $data->replicate();
