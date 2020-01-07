@@ -34,14 +34,18 @@ class Draft extends Model
         return true;
     }
 
-    public function draftParent($modelClass)
+    public function draftParent($class, $id)
     {
-        return $this->belongsTo($modelClass);
+        $parent = $class::where('id', $id)->get()->first();
+        if ($parent === null) return null;
+        return $parent->toArray();
     }
 
-    public function childDraft($modelClass)
+    public static function childDraft($class, $id)
     {
-        return $this->hasOne($modelClass, 'draft_parent_id', 'id');
+        $child = $class::where('draft_parent_id', $id)->get()->first();
+        if ($child === null) return null;
+        return $child->toArray();
     }
 
     public function isDraft()

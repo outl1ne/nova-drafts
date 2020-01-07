@@ -37,9 +37,8 @@ class DraftButton extends Field
     public function resolve($resource, $attribute = null)
     {
         parent::resolve($resource, $attribute);
-
         $this->withMeta([
-            'childDraft' => $resource->childDraft,
+            'childDraft' => Draft::childDraft(get_class($resource), $resource->id),
             'isDraft' => (isset($resource->draft_parent_id) || (!isset($resource->draft_parent_id) && !$resource->published && isset($resource->id))),
         ]);
     }
