@@ -33,14 +33,87 @@ class CreateDraftsMigration extends Command
      */
     public function handle()
     {
-        if(! $this->hasOption('table')) {
-            return $this->test();
-        }
-
+        $this->tables = $this->getTables();
+        $this->tableName = $this->getTableNameArgument();
+        $this->className = $this->makeClassNameArgument();
+        $this->path = $this->getPath();
+        $this->files->put($this->path, $this->buildClass());
+        $this->info('Migration Successfully created at' . $this->path);
     }
 
-    protected function test()
+    public function getTables()
     {
-        return $this->info('test');
+        $tables = DB::select('SHOW TABLES');
+        return array_map('current', $tables);
+    }
+
+    /**
+     * Gets the table name argument - if missing or exists, asks the user to enter it.
+     *
+     * @return string
+     **/
+    public function getTableNameArgument()
+    {
+        if (!$this->argument('table')) {
+            return $this->choice('Please choose a table name you wish to add drafts to.', $this->tables);
+        }
+        return $this->argument('table');
+    }
+
+    public function makeClassNameArgument()
+    {
+        $table_name = $this->tableName;
+        $table_name = join(array_map('ucfirst', explode('_', $table_name)));
+        return "AddNovaDraftsTo{$table_name}";
+    }
+
+    /**
+     * Creates the directory for the migration files and returns the file path.
+     *
+     * @return string
+     **/
+    protected function getPath()
+    {
+        $file_name = date('Y') . '_' . date('m') . '_' . date('d') . '_' . mt_rand(100000, 999999) . '_' . 'add_nova_drafts_to_' . $this->tableName . '.php';
+        return $this->makeDirectory(
+            database_path('migrations/' . $file_name)
+        );
+    }
+
+    /**
+     * Creates the directory for the template file.
+     *
+     * @param string $path Expected path of the Migration file.
+     * @return string
+     **/
+    protected function makeDirectory($path)
+    {
+        $directory = dirname($path);
+        if (!$this->files->isDirectory($directory)) {
+            $this->files->makeDirectory($directory, 0755, true, true);
+        }
+        return $path;
+    }
+
+
+    /**
+     * Create the migration file content.
+     *
+     * @return string
+     */
+    protected function buildClass()
+    {
+        $replace = [
+            ':className' => $this->className,
+            ':tableName' => $this->tableName,
+        ];
+
+        $migration = $this->files->get(__DIR__ . '/../Stubs/DraftMigrationStub.php');
+
+        foreach ($replace as $key => $value) {
+            $migration = str_replace($key, $value, $migration);
+        }
+
+        return $migration;
     }
 }
