@@ -8,9 +8,8 @@ export default {
 
   methods: {
     publish() {
-        console.log(this.draftId, this.resourceClass);
       Nova.request()
-        .post(`/nova-vendor/nova-drafts/publish/${this.draftId}`)
+        .post(`/nova-vendor/nova-drafts/draft-publish/${this.draftId}?class=${this.resourceClass}`)
         .then(
           response => {
             const cb = () => {
