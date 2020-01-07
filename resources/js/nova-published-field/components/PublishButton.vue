@@ -9,7 +9,7 @@ export default {
   methods: {
     publish() {
       Nova.request()
-        .post(`/nova-vendor/nova-blog/publish/${this.postId}`)
+        .post(`/nova-vendor/nova-drafts/publish/${this.postId}`)
         .then(
           response => {
             const cb = () => {
