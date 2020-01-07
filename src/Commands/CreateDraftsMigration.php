@@ -3,26 +3,26 @@
 namespace OptimistDigital\NovaDrafts\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\DB;
 
 class CreateDraftsMigration extends Command
 {
-    /**
-     * The console command signature.
-     *
-     * @var string
-     */
+
     protected $signature = 'drafts:migration
-                    { table : Which table you would like to add drafts logic to }';
+                    { table? : Which table you would like to add drafts logic to }';
 
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Add migration for nova-draft package';
 
+    protected $tableName, $tables, $className, $files, $path;
+
+
+    public function __construct(Filesystem $files)
+    {
+        parent::__construct();
+        $this->files = $files;
+    }
 
     /**
      * Execute the console command.
