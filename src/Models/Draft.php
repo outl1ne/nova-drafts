@@ -41,7 +41,7 @@ class Draft extends Model
         return $child->toArray();
     }
 
-    public function draftParent($class, $id)
+    public static function draftParent($class, $id)
     {
         $parent = $class::where('id', $id)->get()->first();
         if ($parent === null) return null;
