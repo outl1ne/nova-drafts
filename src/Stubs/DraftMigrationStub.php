@@ -5,8 +5,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class :className extends Migration
 {
-    public static $userTable = ':table';
-    public static $uniqueField = ':unique';
 
     /**
      * Run the migrations.
@@ -15,12 +13,12 @@ class :className extends Migration
      */
     public function up()
     {
-        Schema::table($userTable, function ($table) use ($userTable, $uniqueField) {
+        $user_table = ':tableName';
+        Schema::table($user_table, function ($table) use ($user_table) {
             $table->string('preview_token')->nullable();
             $table->boolean('published')->default(true);
             $table->bigInteger('draft_parent_id')->nullable()->unsigned();
-            $table->foreign('draft_parent_id')->references('id')->on($userTable)->onDelete('cascade');
-            $table->unique([$uniqueField, 'published'], "{$userTable}_{$uniqueField}_published_unique");
+            $table->foreign('draft_parent_id')->references('id')->on($user_table)->onDelete('cascade');
         });
     }
 
@@ -31,12 +29,12 @@ class :className extends Migration
      */
     public function down()
     {
-        Schema::table($userTable, function ($table) use ($userTable, $uniqueField) {
-            $table->dropForeign($userTable . '_draft_parent_id_foreign');
+        $user_table = ':tableName';
+        Schema::table($user_table, function ($table) use ($user_table) {
+            $table->dropForeign($user_table . '_draft_parent_id_foreign');
             $table->dropColumn('draft_parent_id');
             $table->dropColumn('published');
             $table->dropColumn('preview_token');
-            $table->dropUnique("{$userTable}_{$uniqueField}_published_unique");
         });
     }
 }
