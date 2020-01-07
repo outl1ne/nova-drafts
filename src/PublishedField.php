@@ -38,6 +38,7 @@ class PublishedField extends Field
         parent::resolve($resource, $attribute);
 
         $this->withMeta([
+            'class' => get_class($resource),
             'childDraft' => Draft::childDraft(get_class($resource), $resource->id),
             'draftParent' => Draft::draftParent(get_class($resource), $resource->draft_parent_id)
         ]);

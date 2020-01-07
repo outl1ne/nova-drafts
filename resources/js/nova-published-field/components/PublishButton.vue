@@ -4,12 +4,13 @@
 
 <script>
 export default {
-  props: ['postId'],
+  props: ['draftId', 'resourceClass'],
 
   methods: {
     publish() {
+        console.log(this.draftId, this.resourceClass);
       Nova.request()
-        .post(`/nova-vendor/nova-drafts/publish/${this.postId}`)
+        .post(`/nova-vendor/nova-drafts/publish/${this.draftId}`)
         .then(
           response => {
             const cb = () => {
@@ -19,7 +20,7 @@ export default {
             if (this.postId === response.data.id) {
               this.$router.go(null, cb);
             } else {
-              this.$router.push(`/resources/posts/${response.data.id}`, cb);
+              this.$router.push(`${response.data.id}`, cb);
             }
           },
           () => {
