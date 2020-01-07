@@ -2,8 +2,8 @@
 
 namespace OptimistDigital\NovaDrafts\Models;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Draft extends Model
 {
@@ -34,18 +34,18 @@ class Draft extends Model
         return true;
     }
 
-    public function draftParent($class, $id)
-    {
-        $parent = $class::where('id', $id)->get()->first();
-        if ($parent === null) return null;
-        return $parent->toArray();
-    }
-
     public static function childDraft($class, $id)
     {
         $child = $class::where('draft_parent_id', $id)->get()->first();
         if ($child === null) return null;
         return $child->toArray();
+    }
+
+    public function draftParent($class, $id)
+    {
+        $parent = $class::where('id', $id)->get()->first();
+        if ($parent === null) return null;
+        return $parent->toArray();
     }
 
     public function isDraft()
