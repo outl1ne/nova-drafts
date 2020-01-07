@@ -1,6 +1,6 @@
 <?php
 
-namespace OptimistDigital\NovaBlog\Nova\Fields;
+namespace OptimistDigital\NovaDrafts;
 
 use Laravel\Nova\Fields\Field;
 use OptimistDigital\NovaDrafts\Models\Draft;
