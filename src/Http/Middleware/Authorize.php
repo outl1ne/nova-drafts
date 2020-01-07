@@ -12,13 +12,14 @@ class Authorize
      *
      * @param \Illuminate\Http\Request $request
      * @param \Closure $next
-     * @return void
+     * @return \Illuminate\Http\Response
      */
     public function handle($request, $next)
     {
-        //$tool = collect(Nova::registeredTools())->first([$this, 'matchesTool']);
+/*        $tool = collect(Nova::registeredTools())->first([$this, 'matchesTool']);
 
-        return next($request);//optional($tool)->authorize($request) ? $next($request) : abort(403);
+        return optional($tool)->authorize($request) ? $next($request) : abort(403);*/
+        return $next($request);
     }
 
     /**
@@ -29,7 +30,6 @@ class Authorize
      */
     public function matchesTool($tool)
     {
-        die($tool);
         return $tool instanceof FieldServiceProvider;
     }
 }
