@@ -12,7 +12,7 @@ export default {
         .post(`/nova-vendor/nova-drafts/draft-publish/${this.draftId}?class=${this.resourceClass}`)
         .then(
           response => {
-              
+
             const cb = () => {
               this.$toasted.show('Draft successfully published!', { type: 'success' });
             };
