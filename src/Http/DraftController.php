@@ -27,7 +27,6 @@ class DraftController extends Controller
                 $published_draft->published = true;
                 $published_draft->save();
                 $draft_to_publish->delete();
-                Log::warning(print_r($published_draft, true));
                 return $published_draft;
             } else {
                 $draft_to_publish->published = true;
