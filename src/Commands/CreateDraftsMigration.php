@@ -5,6 +5,7 @@ namespace OptimistDigital\NovaDrafts\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\DB;
+use InvalidArgumentException;
 
 class CreateDraftsMigration extends Command
 {
@@ -29,7 +30,7 @@ class CreateDraftsMigration extends Command
      *
      * @return void
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function handle()
     {
