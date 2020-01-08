@@ -81,7 +81,7 @@ class CreateDraftsMigration extends Command
         $class_name = join(array_map('ucfirst', explode('_', $class_name)));
         $class_name = "AddNovaDraftsTo{$class_name}";
 
-        if (Schema::hasColumn($this->tableName, 'id')) throw new \Exception("Table '{$this->tableName}' already has drafts");
+        if (Schema::hasColumn($this->tableName, 'draft_parent_id')) throw new \Exception("Table '{$this->tableName}' already has drafts");
         return "AddNovaDraftsTo{$class_name}";
     }
 
