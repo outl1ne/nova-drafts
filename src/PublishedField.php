@@ -15,11 +15,18 @@ class PublishedField extends Field
     public $component = 'nova-published-field';
 
     /**
+     * DraftButton field's enabled variable
+     *
+     * @var boolean
+     */
+    protected $enabled = true;
+
+    /**
      * Create a new field.
      *
-     * @param  string  $name
-     * @param  string|null  $attribute
-     * @param  mixed|null  $resolveCallback
+     * @param string $name
+     * @param string|null $attribute
+     * @param mixed|null $resolveCallback
      * @return void
      */
     public function __construct($name, $attribute = null, $resolveCallback = null)
@@ -30,7 +37,14 @@ class PublishedField extends Field
             'asHtml' => true,
         ]);
 
-        $this->exceptOnForms();
+        if (!$this->enabled) {
+            $this->hideWhenCreating();
+            $this->hideWhenUpdating();
+            $this->hideFromDetail();
+            $this->hideFromIndex();
+        } else {
+            $this->exceptOnForms();
+        }
     }
 
     public function resolve($resource, $attribute = null)
@@ -42,5 +56,10 @@ class PublishedField extends Field
             'childDraft' => Draft::childDraft(get_class($resource), $resource->id),
             'draftParent' => Draft::draftParent(get_class($resource), $resource->draft_parent_id)
         ]);
+    }
+
+    public function draftsEnabled($enabled)
+    {
+        return $this->enabled = $enabled;
     }
 }
