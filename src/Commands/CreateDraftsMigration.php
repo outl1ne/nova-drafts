@@ -5,6 +5,7 @@ namespace OptimistDigital\NovaDrafts\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 use InvalidArgumentException;
 
 class CreateDraftsMigration extends Command
@@ -56,16 +57,32 @@ class CreateDraftsMigration extends Command
     public function getTableNameArgument()
     {
         if (!$this->argument('table')) {
-            return $this->choice('Please choose a table name you wish to add drafts to.', $this->tables);
+            return $this->getTableChoice();
         }
-        return $this->argument('table');
+        return $this->validateInsertedTableName();
+    }
+
+    public function getTableChoice()
+    {
+        return $this->choice('Please choose a table name you wish to add drafts to', $this->tables);
+    }
+
+    public function validateInsertedTableName()
+    {
+        if (Schema::hasTable($this->argument('table'))) return $this->argument('table');
+        $this->error("[ERROR] Table '{$this->argument('table')}' does not exist in your database");
+        return $this->getTableChoice();
+
     }
 
     public function makeClassNameArgument()
     {
-        $table_name = $this->tableName;
-        $table_name = join(array_map('ucfirst', explode('_', $table_name)));
-        return "AddNovaDraftsTo{$table_name}";
+        $class_name = $this->tableName;
+        $class_name = join(array_map('ucfirst', explode('_', $class_name)));
+        $class_name = "AddNovaDraftsTo{$class_name}";
+
+        if (Schema::hasColumn($this->tableName, 'id')) throw new \Exception("Table '{$this->tableName}' already has drafts");
+        return "AddNovaDraftsTo{$class_name}";
     }
 
     /**
