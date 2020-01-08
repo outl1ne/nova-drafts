@@ -19,6 +19,12 @@ class :className extends Migration
             $table->boolean('published')->default(true);
             $table->bigInteger('draft_parent_id')->nullable()->unsigned();
             $table->foreign('draft_parent_id')->references('id')->on($user_table)->onDelete('cascade');
+
+            // It's recommended to replace your current unique constraint and add published field to it.
+
+            // Example:  $table->dropUnique("your_unique_index_name");
+            //           $table->unique(['your_unique_fields', 'published'], "example_unique_name_with_published_field_added");
+
         });
     }
 
@@ -35,6 +41,11 @@ class :className extends Migration
             $table->dropColumn('draft_parent_id');
             $table->dropColumn('published');
             $table->dropColumn('preview_token');
+
+            // If you added a new unique constraint in up() function, drop it here.
+
+            // Example:  $table->dropUnique("example_unique_name_with_published_field_added");
+            //           $table->unique(['your_unique_fields'], "your_unique_index_name");
         });
     }
 }
