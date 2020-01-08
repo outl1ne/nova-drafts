@@ -36,5 +36,27 @@ php artisan drafts:migration {table?}
 ```
 if table name is not provided, a choice of all available tables is provided.
 
+**If your table has pre-existing Unique constraint:**  
+It's recommended to add 'published' field to the unique constraint.  
+More information inside the migration file.
+
+### Creating the field
+```php
+use OptimistDigital\NovaDrafts;
+
+DraftButton::make('Draft'),
+PublishedField::make('State', 'published),
+```
+
+## Options
+
+Possible option you can pass to the field using the option name as a function
+
+| Option                   | Type    | Default   | Description                                                             | 
+| :----------------------- | :------ | :-------- | :-----------------------------------------------------------------------|
+| `draftsEnabled`          | boolean | true      | boolean whether drafts are enabled or not                               |
+
+
+
 
 
