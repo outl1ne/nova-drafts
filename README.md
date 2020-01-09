@@ -48,6 +48,24 @@ DraftButton::make('Draft'),
 PublishedField::make('State', 'published),
 ```
 
+### Index Filtering (IndexQuery)
+
+Inside your **Model** add the following snippet:
+```php
+public function childDraft()
+{
+    return $this->hasOne(YourModelName::class);
+}
+```
+
+Inside your **Index Query** use that function, to filter out published pages that have drafts: 
+```php
+public static function indexQuery(NovaRequest $request, $query)
+{
+    return $query->doesntHave('childDraft');
+}
+```
+
 ## Options
 
 Possible option you can pass to the field using the option name as a function
