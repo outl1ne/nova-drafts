@@ -75,6 +75,13 @@ Possible option you can pass to the field using the option name as a function
 | `draftsEnabled`          | boolean | true      | boolean whether drafts are enabled or not                               |
 
 
+# Credits
 
+- [Kaspar Rosin](https://github.com/kasparrosin)
+- [Mikk Õun](https://github.com/mikkoun)
+
+# License
+
+Nova Drafts is open-sourced software licensed under the [MIT license](https://github.com/optimistdigital/nova-drafts/blob/master/LICENSE.md)
 
 
