@@ -1,7 +1,7 @@
 # Nova Drafts
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/optimistdigital/nova-drafts.svg?style=flat-square)](https://packagist.org/packages/optimistdigital/nova-drafts)
-[![Total Downloads](https://img.shields.io/packagist/dt/optimistdigital/nova-drafts.svg?style=flat-square)](https://packagist.org/packages/optimistdigital/nova-drafts)
+<!--[![Total Downloads](https://img.shields.io/packagist/dt/optimistdigital/nova-drafts.svg?style=flat-square)](https://packagist.org/packages/optimistdigital/nova-drafts)--->
 
 This [Laravel Nova](https://nova.laravel.com) field allows you to make drafts of your resources.
 
