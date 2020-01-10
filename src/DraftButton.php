@@ -65,7 +65,7 @@ class DraftButton extends Field
 
     public function draftsEnabled($enabled)
     {
-        $this->enabled = $enabled;
+        $this->enabled = is_bool($enabled) ? $enabled : false;
         return $this;
     }
 
