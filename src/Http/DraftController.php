@@ -4,7 +4,6 @@ namespace OptimistDigital\NovaDrafts\Http;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use Illuminate\Support\Facades\Log;
 use OptimistDigital\NovaDrafts\Models\Draft;
 
 class DraftController extends Controller
