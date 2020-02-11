@@ -29,15 +29,15 @@ composer require optimistdigital/nova-drafts
 
 ### Preparing the models and database
 
-This field requires a few database changes - namely, the model requires three new columns  
-**Migrations can be created using the following Artisan command:**  
+This field requires a few database changes - namely, the model requires three new columns
+**Migrations can be created using the following Artisan command:**
 ```bash
 php artisan drafts:migration {table?}
 ```
 if table name is not provided, a choice of all available tables is provided.
 
-**If your table has pre-existing Unique constraint:**  
-It's recommended to add 'published' field to the unique constraint.  
+**If your table has pre-existing Unique constraint:**
+It's recommended to add 'published' field to the unique constraint.
 More information inside the migration file.
 
 ### Creating the field
@@ -54,11 +54,11 @@ Inside your **Model** add the following snippet:
 ```php
 public function childDraft()
 {
-    return $this->hasOne(YourModelName::class);
+    return $this->hasOne(YourModelName::class, 'draft_parent_id', 'id');
 }
 ```
 
-Inside your **Index Query** use that function, to filter out published pages that have drafts: 
+Inside your **Index Query** use that function, to filter out published pages that have drafts:
 ```php
 public static function indexQuery(NovaRequest $request, $query)
 {
@@ -70,7 +70,7 @@ public static function indexQuery(NovaRequest $request, $query)
 
 Possible option you can pass to the field using the option name as a function
 
-| Option                   | Type    | Default   | Description                                                             | 
+| Option                   | Type    | Default   | Description                                                             |
 | :----------------------- | :------ | :-------- | :-----------------------------------------------------------------------|
 | `draftsEnabled`          | boolean | true      | boolean whether drafts are enabled or not                               |
 
