@@ -45,7 +45,7 @@ More information inside the migration file.
 use OptimistDigital\NovaDrafts;
 
 DraftButton::make('Draft'),
-PublishedField::make('State', 'published),
+PublishedField::make('State', 'published'),
 ```
 
 ### Index Filtering (IndexQuery)
