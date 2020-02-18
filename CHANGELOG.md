@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.0.3] - 2020-02-18
+
+### Fixed
+
+- Fixed a bug, where draft publishing was trying to save fields that were appended.
+
 ## [1.0.2] - 2020-02-11
 
 ### Fixed
