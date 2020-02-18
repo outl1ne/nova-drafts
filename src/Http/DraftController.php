@@ -18,7 +18,7 @@ class DraftController extends Controller
 
             if ($draft_parent !== null) {
                 $published_draft = $draft_parent;
-                foreach ($draft_to_publish->toArray() as $draft_column => $value) {
+                foreach ($draft_to_publish->getAttributes() as $draft_column => $value) {
                     if (!in_array($draft_column, ['id', 'draft_parent_id', 'preview_token', 'created_at'])) {
                         $published_draft[$draft_column] = $draft_to_publish[$draft_column];
                     }
