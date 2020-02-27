@@ -7,7 +7,9 @@
       id="create-draft-button"
       v-on:click="createDraft"
       v-if="!field.isDraft"
-    >Create draft</button>
+    >
+      Create draft
+    </button>
 
     <input name="draft" v-model="draft" type="hidden" />
   </div>
