@@ -3,29 +3,30 @@
 </template>
 
 <script>
-  export default {
-    props: ['draftId', 'resourceClass'],
+export default {
+  props: ['draftId', 'resourceClass'],
 
-    methods: {
-      publish() {
-        Nova.request()
-          .post(`/nova-vendor/nova-drafts/draft-publish/${this.draftId}?class=${this.resourceClass}`)
-          .then(response => {
-              const cb = () => {
-                this.$toasted.show('Draft successfully published!', { type: 'success' });
-              };
+  methods: {
+    publish() {
+      Nova.request()
+        .post(`/nova-vendor/nova-drafts/draft-publish/${this.draftId}?class=${this.resourceClass}`)
+        .then(
+          response => {
+            const cb = () => {
+              this.$toasted.show('Draft successfully published!', { type: 'success' });
+            };
 
-              if (this.draftId === response.data.id) {
-                this.$router.go(null, cb);
-              } else {
-                this.$router.push(`${response.data.id}`, cb);
-              }
-            },
-            () => {
-              this.$toasted.show('Failed to publish draft!', { type: 'error' });
-            },
-          );
-      },
+            if (this.draftId === response.data.id) {
+              this.$router.go(null, cb);
+            } else {
+              this.$router.push(`${response.data.id}`, cb);
+            }
+          },
+          () => {
+            this.$toasted.show('Failed to publish draft!', { type: 'error' });
+          }
+        );
     },
-  };
+  },
+};
 </script>

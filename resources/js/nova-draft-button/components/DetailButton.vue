@@ -5,7 +5,9 @@
     class="mr-3 btn btn-default btn-danger"
     v-if="isDraft"
     v-on:click="discard"
-  >Discard Draft</button>
+  >
+    Discard Draft
+  </button>
 </template>
 
 <script>
@@ -24,9 +26,8 @@ export default {
 
   beforeMount() {
     if (this.field.childDraft && this.field.childDraft.id) {
-
       this.$router.replace(`${this.field.childDraft.id}`);
-    //this.$router.replace(`/resources/posts/${this.field.childDraft.id}`);
+      //this.$router.replace(`/resources/posts/${this.field.childDraft.id}`);
 
       this.$nextTick(this.$parent.$parent.getFields); // ! Might break with new Laravel Nova versions
     }

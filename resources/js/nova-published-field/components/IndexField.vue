@@ -1,5 +1,5 @@
 <template>
-  <publish-indicator :published="isPublished" :draft="isDraft"/>
+  <publish-indicator :published="isPublished" :draft="isDraft" />
 </template>
 
 <script>
