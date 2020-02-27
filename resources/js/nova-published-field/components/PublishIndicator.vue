@@ -1,7 +1,7 @@
 <template>
   <div>
-    <span v-if="published" class="badge badge-success">PUBLISHED</span>
-    <span v-if="draft" class="badge badge-primary">DRAFT</span>
+    <span v-if="published" class="badge badge-success">{{ __('novaDrafts.publishIndicatorPublished') }}</span>
+    <span v-if="draft" class="badge badge-primary">{{ __('novaDrafts.publishIndicatorDraft') }}</span>
   </div>
 </template>
 

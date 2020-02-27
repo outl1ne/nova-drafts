@@ -1,5 +1,7 @@
 <template>
-  <button class="ml-3 btn btn-default btn-primary" type="button" v-on:click="publish">Publish</button>
+  <button class="ml-3 btn btn-default btn-primary" type="button" v-on:click="publish">
+    {{ __('novaDrafts.publishButtonText') }}
+  </button>
 </template>
 
 <script>
@@ -7,25 +9,23 @@ export default {
   props: ['draftId', 'resourceClass'],
 
   methods: {
-    publish() {
-      Nova.request()
-        .post(`/nova-vendor/nova-drafts/draft-publish/${this.draftId}?class=${this.resourceClass}`)
-        .then(
-          response => {
-            const cb = () => {
-              this.$toasted.show('Draft successfully published!', { type: 'success' });
-            };
+    async publish() {
+      try {
+        const response = await Nova.request().post(`/nova-vendor/nova-drafts/draft-publish/${this.draftId}`, {
+          class: this.resourceClass,
+        });
 
-            if (this.draftId === response.data.id) {
-              this.$router.go(null, cb);
-            } else {
-              this.$router.push(`${response.data.id}`, cb);
-            }
-          },
-          () => {
-            this.$toasted.show('Failed to publish draft!', { type: 'error' });
-          }
-        );
+        if (this.draftId === response.data.id) {
+          this.$router.go(null);
+        } else {
+          this.$router.push(`${response.data.id}`);
+        }
+
+        this.$toasted.show(this.__('novaDrafts.publishSuccessToast'), { type: 'success' });
+      } catch (e) {
+        console.error(e);
+        this.$toasted.show(this.__('novaDrafts.publishFailedToast'), { type: 'error' });
+      }
     },
   },
 };

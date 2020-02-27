@@ -8,7 +8,7 @@
       v-on:click="createDraft"
       v-if="!field.isDraft"
     >
-      Create draft
+      {{ __('novaDrafts.createDraftButtonText') }}
     </button>
 
     <input name="draft" v-model="draft" type="hidden" />

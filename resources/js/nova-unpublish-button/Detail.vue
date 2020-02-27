@@ -6,7 +6,7 @@
     class="mr-3 btn btn-default btn-danger"
     @click="unpublish"
   >
-    {{ this.field.name }}
+    {{ __('novaDrafts.unpublishButtonText') }}
   </button>
 </template>
 

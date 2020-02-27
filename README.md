@@ -81,10 +81,23 @@ Possible option you can pass to the field using the option name as a function
 | :-------------- | :------ | :------ | :---------------------------------------- |
 | `draftsEnabled` | boolean | true    | boolean whether drafts are enabled or not |
 
+## Localization and text customization
+
+The translation file(s) can be published by using the following publish command:
+
+```bash
+php artisan vendor:publish --provider="OptimistDigital\NovaDrafts\FieldServiceProvider" --tag="translations"
+```
+
+You can add your translations to `resources/lang/vendor/nova-drafts/` by creating a new translations file with the locale name (ie `et.json`) and copying the JSON from the existing `en.json`.
+
+To get a single setting's value, call `nova_get_setting('some_setting_key')`. It will return either a value or null if there's no setting with such key.
+
 # Credits
 
 - [Kaspar Rosin](https://github.com/kasparrosin)
 - [Mikk Õun](https://github.com/mikkoun)
+- [Tarvo Reinpalu](https://github.com/tarpsvo)
 
 # License
 

@@ -7,9 +7,11 @@ export default {
         });
 
         // Reload page
-        this.$router.go();
+        this.$router.go(null);
+        this.$toasted.show(this.__('novaDrafts.unpublishSuccessToast'), { type: 'success' });
       } catch (e) {
-        this.$toasted.show(`Unpublishing failed (${e.message})`, { type: 'error' });
+        console.error(e);
+        this.$toasted.show(this.__('novaDrafts.unpublishFailedToast'), { type: 'error' });
         return;
       }
     },

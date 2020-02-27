@@ -1,0 +1,13 @@
+{
+  "novaDrafts.unpublishButtonText": "Unpublish",
+  "novaDrafts.discardDraftButtonText": "Discard draft",
+  "novaDrafts.createDraftButtonText": "Create draft",
+  "novaDrafts.publishButtonText": "Publish",
+  "novaDrafts.dicardSuccessToast": "Draft successfully discarded.",
+  "novaDrafts.publishSuccessToast": "Draft successfully published.",
+  "novaDrafts.unpublishSuccessToast": "Unpublish successful.",
+  "novaDrafts.publishFailedToast": "Failed to publish draft.",
+  "novaDrafts.unpublishFailedToast": "Failed to unpublish draft.",
+  "novaDrafts.publishIndicatorPublished": "PUBLISHED",
+  "novaDrafts.publishIndicatorDraft": "DRAFT"
+}

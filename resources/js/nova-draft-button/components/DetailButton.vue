@@ -6,7 +6,7 @@
     v-if="isDraft"
     v-on:click="discard"
   >
-    Discard Draft
+    {{ __('novaDrafts.discardDraftButtonText') }}
   </button>
 </template>
 
@@ -45,7 +45,7 @@ export default {
   methods: {
     discard() {
       this.forceDeleteResources([this.resource], () => {
-        this.$toasted.show(this.__('The post draft was discarded!'), { type: 'success' });
+        this.$toasted.show(this.__('novaDrafts.dicardSuccessToast'), { type: 'success' });
         this.$router.push({ name: 'index', params: { resourceName: this.resourceName } });
       });
     },
