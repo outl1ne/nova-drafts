@@ -36,4 +36,28 @@ class DraftController extends Controller
         }
         return $draft_to_publish;
     }
+
+    public function unpublishDraft($draftId, Request $request)
+    {
+        $draftClass = $request->input('class');
+        $draftToUnpublish = $draftClass::find($draftId);
+
+        if (empty($draftToUnpublish)) return response()->json(['error' => 'model_not_found'], 404);
+
+        $draftParentId = $draftToUnpublish->draft_parent_id;
+        if (isset($draftParentId)) {
+            $draftParent = $draftClass::find($draftParentId);
+            if (isset($draftParent)) {
+                $draftToUnpublish->draft_parent_id = null;
+                $draftToUnpublish->save();
+                $draftParent->delete();
+            }
+            return response('', 204);
+        }
+
+        $draftToUnpublish->published = false;
+        $draftToUnpublish->save();
+
+        return response('', 204);
+    }
 }

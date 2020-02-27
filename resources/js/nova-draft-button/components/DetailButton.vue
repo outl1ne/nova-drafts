@@ -12,32 +12,31 @@
 
 <script>
 import { InteractsWithResourceInformation, Deletable } from 'laravel-nova';
+import FindsNovaElements from '../../mixins/FindsNovaElements';
 
 export default {
-  mixins: [Deletable, InteractsWithResourceInformation],
+  mixins: [Deletable, InteractsWithResourceInformation, FindsNovaElements],
 
   props: ['resource', 'resourceId', 'field', 'resourceName'],
 
   mounted() {
     if (this.isDraft) {
-      this.deleteButton.parentNode.replaceChild(this.$refs.deleteNovaDraftButton, this.deleteButton);
+      const deleteButton = this.getDetailDeleteButton();
+      if (deleteButton) {
+        deleteButton.style.display = 'none';
+        deleteButton.parentNode.insertBefore(this.$refs.deleteNovaDraftButton, deleteButton);
+      }
     }
   },
 
   beforeMount() {
     if (this.field.childDraft && this.field.childDraft.id) {
       this.$router.replace(`${this.field.childDraft.id}`);
-      //this.$router.replace(`/resources/posts/${this.field.childDraft.id}`);
-
       this.$nextTick(this.$parent.$parent.getFields); // ! Might break with new Laravel Nova versions
     }
   },
 
   computed: {
-    deleteButton() {
-      return document.querySelector('.content').querySelector('[dusk=open-delete-modal-button]');
-    },
-
     isDraft() {
       return this.field.isDraft;
     },
@@ -56,6 +55,6 @@ export default {
 
 <style scoped>
 .btn-danger {
-  white-space: pre;
+  white-space: nowrap;
 }
 </style>

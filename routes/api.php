@@ -14,4 +14,4 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('/draft-publish/{draftId}', 'OptimistDigital\NovaDrafts\Http\DraftController@publishDraft');
-
+Route::post('/draft-unpublish/{draftId}', 'OptimistDigital\NovaDrafts\Http\DraftController@unpublishDraft');
