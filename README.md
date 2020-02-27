@@ -8,6 +8,7 @@ This [Laravel Nova](https://nova.laravel.com) field allows you to make drafts of
 ## Features
 
 - **Create Drafts**
+- **Unpublish resources** (disable them)
 - **Artisan Command to create Migration**
 
 ## Screenshots
