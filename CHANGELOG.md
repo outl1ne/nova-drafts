@@ -5,6 +5,7 @@
 ### Added
 
 - Added `UnpublishButton` which allows pages to be "unpublished" (disabling them)
+- Added localization support
 
 ### Changed
 
