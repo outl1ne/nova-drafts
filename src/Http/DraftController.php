@@ -2,6 +2,7 @@
 
 namespace OptimistDigital\NovaDrafts\Http;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use OptimistDigital\NovaDrafts\Models\Draft;
@@ -56,6 +57,7 @@ class DraftController extends Controller
         }
 
         $draftToUnpublish->published = false;
+        $draftToUnpublish->preview_token = Str::random(20);
         $draftToUnpublish->save();
 
         return response('', 204);
