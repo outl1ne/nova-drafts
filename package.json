@@ -11,10 +11,10 @@
     "format": "prettier --write 'resources/**/*.{js,scss,vue}'"
   },
   "devDependencies": {
-    "cross-env": "^7.0.0",
-    "laravel-mix": "^5.0.1",
-    "laravel-nova": "^1.2.0",
-    "prettier": "^1.19.1",
+    "cross-env": "^7.0.2",
+    "laravel-mix": "^5.0.4",
+    "laravel-nova": "^1.2.2",
+    "prettier": "^2.0.5",
     "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {
