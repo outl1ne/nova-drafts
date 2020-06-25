@@ -47,7 +47,9 @@ More information inside the migration file.
 ### Creating the field
 
 ```php
-use OptimistDigital\NovaDrafts;
+use OptimistDigital\NovaDrafts\DraftButton;
+use OptimistDigital\NovaDrafts\PublishedField;
+use OptimistDigital\NovaDrafts\UnpublishButton;
 
 UnpublishButton::make('Unpublish'),
 DraftButton::make('Draft'),
