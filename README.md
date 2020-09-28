@@ -44,16 +44,20 @@ if table name is not provided, a choice of all available tables is provided.
 It's recommended to add 'published' field to the unique constraint.
 More information inside the migration file.
 
-### Creating the field
+### Defining the field
 
 ```php
 use OptimistDigital\NovaDrafts\DraftButton;
 use OptimistDigital\NovaDrafts\PublishedField;
 use OptimistDigital\NovaDrafts\UnpublishButton;
 
-UnpublishButton::make('Unpublish'),
-DraftButton::make('Draft'),
-PublishedField::make('State', 'published'),
+public function fields(Request $request)
+{
+    return [
+        UnpublishButton::make('Unpublish'),
+        DraftButton::make('Draft'),
+        PublishedField::make('State', 'published'),
+    ]
 ```
 
 ### Index Filtering (IndexQuery)
