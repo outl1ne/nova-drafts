@@ -58,6 +58,7 @@ public function fields(Request $request)
         DraftButton::make('Draft'),
         PublishedField::make('State', 'published'),
     ]
+}
 ```
 
 ### Index Filtering (IndexQuery)
