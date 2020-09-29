@@ -12,12 +12,12 @@
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
-    "laravel-mix": "^5.0.4",
-    "laravel-nova": "^1.2.2",
-    "prettier": "^2.0.5",
-    "vue-template-compiler": "^2.6.11"
+    "laravel-mix": "^5.0.5",
+    "laravel-nova": "^1.4.1",
+    "prettier": "^2.1.2",
+    "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
-    "vue": "^2.6.11"
+    "vue": "^2.6.12"
   }
 }
