@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.2] - 2020-05-25
+
+### Changed
+
+- Dependency security update
+
+## [1.1.2] - 2020-05-25
+
+### Changed
+
+- Dependency security update
+
 ## [1.1.1] - 2020-05-25
 
 ### Changed
