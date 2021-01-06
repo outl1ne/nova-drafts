@@ -1,10 +1,11 @@
 # Changelog
 
-## [1.1.2] - 2020-05-25
+## [1.1.3] - 2021-01-06
 
 ### Changed
 
 - Dependency security update
+- **HasDrafts** for model to simplify usage.
 
 ## [1.1.2] - 2020-05-25
 
