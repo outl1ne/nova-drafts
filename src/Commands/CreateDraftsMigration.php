@@ -43,10 +43,7 @@ class CreateDraftsMigration extends Command
 
     public function getTables()
     {
-        $schema = collect(DB::getDoctrineSchemaManager()->listTableNames())->map(function (string $item, int $key) {
-            return $item;
-        });
-        return $schema->all();
+        return DB::getDoctrineSchemaManager()->listTableNames();
     }
 
     /**
@@ -85,7 +82,7 @@ class CreateDraftsMigration extends Command
         $class_name = "AddNovaDraftsTo{$class_name}";
 
         if (Schema::hasColumn($this->tableName, 'draft_parent_id')) {
-            throw new \Exception("Table '{$this->tableName}' already has drafts");
+            throw new \Exception("Table '{$this->tableName}' already has drafts, do you wish to continue?");
         }
 
         return $class_name;
