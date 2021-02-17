@@ -14,11 +14,9 @@ class CreateDraftsMigration extends Command
     protected $signature = 'drafts:migration
                     { table? : Which table you would like to add drafts logic to }';
 
-
     protected $description = 'Add migration for nova-draft package';
 
     protected $tableName, $tables, $className, $files, $path;
-
 
     public function __construct(Filesystem $files)
     {
@@ -45,8 +43,10 @@ class CreateDraftsMigration extends Command
 
     public function getTables()
     {
-        $tables = DB::select('SHOW TABLES');
-        return array_map('current', $tables);
+        $schema = collect(DB::getDoctrineSchemaManager()->listTableNames())->map(function (string $item, int $key) {
+            return $item;
+        });
+        return $schema->all();
     }
 
     /**
@@ -69,7 +69,10 @@ class CreateDraftsMigration extends Command
 
     public function validateInsertedTableName()
     {
-        if (Schema::hasTable($this->argument('table'))) return $this->argument('table');
+        if (Schema::hasTable($this->argument('table'))) {
+            return $this->argument('table');
+        }
+
         $this->error("[ERROR] Table '{$this->argument('table')}' does not exist in your database");
         return $this->getTableChoice();
 
@@ -81,7 +84,10 @@ class CreateDraftsMigration extends Command
         $class_name = join(array_map('ucfirst', explode('_', $class_name)));
         $class_name = "AddNovaDraftsTo{$class_name}";
 
-        if (Schema::hasColumn($this->tableName, 'draft_parent_id')) throw new \Exception("Table '{$this->tableName}' already has drafts");
+        if (Schema::hasColumn($this->tableName, 'draft_parent_id')) {
+            throw new \Exception("Table '{$this->tableName}' already has drafts");
+        }
+
         return $class_name;
     }
 
@@ -112,7 +118,6 @@ class CreateDraftsMigration extends Command
         }
         return $path;
     }
-
 
     /**
      * Create the migration file content.
