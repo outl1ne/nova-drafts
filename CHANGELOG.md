@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.1.4] - 2021-02-22
+
+### Changed
+
+- Fixed migration command syntax error for SQLITE (Thanks to [jhonatasfender](https://github.com/jhonatasfender))
+
+### Added
+
+- CreateDraft command will now notify user if he already has `draft_parent_id` column in designated table.
+
 ## [1.1.3] - 2021-01-06
 
 ### Changed
