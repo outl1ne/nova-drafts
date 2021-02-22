@@ -15,7 +15,6 @@ class CreateDraftsMigration extends Command
                     { table? : Which table you would like to add drafts logic to }';
 
     protected $description = 'Add migration for nova-draft package';
-
     protected $tableName, $tables, $className, $files, $path;
 
     public function __construct(Filesystem $files)
@@ -56,6 +55,7 @@ class CreateDraftsMigration extends Command
         if (!$this->argument('table')) {
             return $this->getTableChoice();
         }
+
         return $this->validateInsertedTableName();
     }
 
@@ -72,7 +72,6 @@ class CreateDraftsMigration extends Command
 
         $this->error("[ERROR] Table '{$this->argument('table')}' does not exist in your database");
         return $this->getTableChoice();
-
     }
 
     public function makeClassNameArgument()
@@ -82,7 +81,8 @@ class CreateDraftsMigration extends Command
         $class_name = "AddNovaDraftsTo{$class_name}";
 
         if (Schema::hasColumn($this->tableName, 'draft_parent_id')) {
-            throw new \Exception("Table '{$this->tableName}' already has drafts, do you wish to continue?");
+            $shouldContinue = $this->confirm("Table '{$this->tableName}' already has drafts, do you wish to continue?", false);
+            if (!$shouldContinue) exit();
         }
 
         return $class_name;
