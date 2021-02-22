@@ -66,6 +66,10 @@ public function fields(Request $request)
 Inside your **Model** add the following snippet:
 
 ```php
+protected $casts = [
+    'published' => 'boolean',
+];
+
 public function childDraft()
 {
     return $this->hasOne(YourModelName::class, 'draft_parent_id', 'id');
@@ -78,6 +82,23 @@ Inside your **Index Query** use that function, to filter out published pages tha
 public static function indexQuery(NovaRequest $request, $query)
 {
     return $query->doesntHave('childDraft');
+}
+```
+
+Or you can use it that way:
+```php
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use OptimistDigital\NovaDrafts\Traits\HasDrafts;
+
+class YourModel extends Model
+{
+    use HasDrafts;
+
+    protected $casts = [
+        'published' => 'boolean',
+    ];
 }
 ```
 
