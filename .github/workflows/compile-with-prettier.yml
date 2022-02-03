@@ -1,6 +1,6 @@
 name: Prettier & Compile
 
-on: [ push ]
+on: [push]
 
 jobs:
   run-prettier:
@@ -16,7 +16,7 @@ jobs:
           node-version: 14
 
       - name: Install Node.js dependencies
-        run: npm install
+        run: npm ci
 
       - name: Run prettier
         run: npm run format
