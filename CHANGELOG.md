@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.1.5] - 2022-02-03
+
+### Changed
+
+- Updated packages
+
 ## [1.1.4] - 2021-02-22
 
 ### Changed
