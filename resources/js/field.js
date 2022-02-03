@@ -5,7 +5,7 @@ import DetailNovaPublishedField from './nova-published-field/components/DetailBu
 import DetailNovaUnpublishButton from './nova-unpublish-button/Detail';
 import FormNovaUnpublishButton from './nova-unpublish-button/Form';
 
-Nova.booting((Vue, router, store) => {
+Nova.booting((Vue) => {
   Vue.component('detail-nova-draft-button', DetailNovaDraftButton);
   Vue.component('form-nova-draft-button', FormNovaDraftButton);
 
