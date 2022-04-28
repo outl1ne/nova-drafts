@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { InteractsWithResourceInformation, Deletable } from 'laravel-nova';
 import FindsNovaElements from '../../mixins/FindsNovaElements';
 
 export default {
