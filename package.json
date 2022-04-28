@@ -8,15 +8,16 @@
     "format": "prettier --write 'resources/**/*.{css,js,vue}'"
   },
   "devDependencies": {
+    "@vue/compiler-sfc": "^3.2.33",
     "cross-env": "^7.0.3",
     "laravel-mix": "6.0.41",
-    "laravel-nova": "1.12.3",
     "postcss": "^8.4.6",
     "prettier": "2.5.1",
     "vue-loader": "^15.9.8",
     "vue-template-compiler": "^2.6.12"
   },
   "dependencies": {
+    "path": "^0.12.7",
     "vue": "^2.6.12"
   }
 }
