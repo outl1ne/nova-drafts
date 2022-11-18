@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.1.6] - 2022-11-18
+
+### Changed
+
+- Updated packages
+
+### Fixed
+
+- Unpublish button misalignment
+
 ## [1.1.6] - 2022-02-03
 
 ### Changed

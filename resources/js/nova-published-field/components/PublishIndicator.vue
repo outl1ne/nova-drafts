@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="badges">
     <span v-if="published" class="badge badge-success">{{ __('novaDrafts.publishIndicatorPublished') }}</span>
     <span v-if="draft" class="badge badge-primary">{{ __('novaDrafts.publishIndicatorDraft') }}</span>
   </div>
@@ -12,6 +12,12 @@ export default {
 </script>
 
 <style scoped>
+.badges {
+  display: flex;
+  flex-direction: row;
+  gap: 0.25rem;
+}
+
 .badge {
   display: inline-block;
   padding: 0.25em 0.4em;
