@@ -45,5 +45,6 @@ form h1 > *:first-child {
 
 form h1 > *:last-child {
   margin-right: 0;
+  margin-left: 0;
 }
 </style>
