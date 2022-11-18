@@ -1,6 +1,12 @@
 # Changelog
 
-## [1.1.6] - 2022-11-18
+## [1.1.8] - 2022-11-18
+
+### Fixed
+
+- Fixed missing padding from publish indication
+
+## [1.1.7] - 2022-11-18
 
 ### Changed
 
